@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jonhel Photography</title>
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Montserrat:wght@400;600&display=swap");
+
+    :root {
+      --text-dark: #171717;
+      --text-light: #525252;
+      --white: #ffffff;
+      --max-width: 1200px;
+      --header-font: "Merriweather", serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Montserrat", sans-serif;
+    }
+
+    .section__container {
+      max-width: var(--max-width);
+      margin: auto;
+      padding: 5rem 1rem;
+    }
+
+    .section__header {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      font-family: var(--header-font);
+      color: var(--text-dark);
+    }
+
+    /* ===== GALLERY GRID ===== */
+    .gallery__grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery__grid img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    /* Hover dim effect (existing style) */
+    .gallery__grid:hover img:not(:hover) {
+      opacity: 0.5;
+    }
+
+    /* ===== BUTTON ===== */
+    .gallery__btn {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      background: var(--text-dark);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 5px;
+      display: inline-block;
+    }
+
+    /* ===== LIGHTBOX (NO ANIMATION) ===== */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
+
+    .lightbox__close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 40px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (min-width: 540px) {
+      .gallery__grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 768px) {
+      .gallery__grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<section class="section__container gallery__container">
+  <h2 class="section__header">Funshoots & Portraits</h2>
+
+  <div class="gallery__grid">
+    <img src="assets/Portraits/jonhelphotography1-71.jpg" alt="gallery">
+    <img src="assets/Portraits/jonhelphotography1-72.jpg" alt="gallery">
+    <img src="assets/Portraits/jonhelphotography1-73.jpg" alt="gallery">
+    <img src="assets/Portraits/jonhelphotography1-74.jpg" alt="gallery">
+    <img src="assets/Portraits/jonhelphotography1-75.jpg" alt="gallery">
+    <img src="assets/Portraits/jonhelphotography1-76.jpg" alt="gallery">
+    <img src="assets/Portraits/jonhelphotography1-77.jpg" alt="gallery">
+    <img src="assets/Portraits/jonhelphotography1-78.jpg" alt="gallery">
+    <img src="assets/Portraits/jonhelphotography1-79.jpg" alt="gallery">
+    <img src="assets/" alt="gallery">
+    <img src="assets/" alt="gallery">
+    <img src="assets/" alt="gallery">
+    <img src="assets/" alt="gallery">
+    <img src="assets/" alt="gallery">
+    <img src="assets/" alt="gallery">
+    <img src="assets/" alt="gallery">
+  </div>
+
+  <div class="gallery__btn">
+    <a href="index.html#myservices" class="btn">BACK</a>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox__close">&times;</span>
+  <img id="lightboxImg" src="" alt="preview">
+</div>
+
+<script>
+  const images = document.querySelectorAll(".gallery__grid img");
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightboxImg");
+  const closeBtn = document.querySelector(".lightbox__close");
+
+  images.forEach(img => {
+    img.addEventListener("click", () => {
+      lightbox.style.display = "flex";
+      lightboxImg.src = img.src;
+    });
+  });
+
+  closeBtn.addEventListener("click", () => {
+    lightbox.style.display = "none";
+  });
+
+  lightbox.addEventListener("click", (e) => {
+    if (e.target !== lightboxImg) {
+      lightbox.style.display = "none";
+    }
+  });
+</script>
+
+</body>
+</html>
